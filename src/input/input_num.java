@@ -24,3 +24,4 @@ public class input_num {
         return N;
     }
 }
+

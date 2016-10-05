@@ -1,10 +1,12 @@
 package Matrix;
+    import input.MyExy;
     import input.input_num;
     import java.io.*;
     import java.util.Scanner;
 
+
 public class Matrix {
-    private int m_arr[][];
+    protected int m_arr[][];
    // private int N,M;
     // public Matrix(){};
 
@@ -14,7 +16,14 @@ public class Matrix {
         m_arr = new int[n][m];
     }
     public Matrix(int arr[][]){
-        m_arr = arr;
+        m_arr = new int[arr.length][];
+        for (int i =0;i<arr.length;i++ ){
+            m_arr[i] = new int[arr[i].length];
+            System.arraycopy(arr[i],0, m_arr[i],0,m_arr[i].length);
+            //m_arr[i].clone(arr[i];
+        }
+        //m_arr.clone(arr); // = arr;
+       // m_arr = new Integer[arr.length][arr[0].length].clone(arr);// clone(arr);
     }
 
     public void input_matr(){
@@ -25,9 +34,9 @@ public class Matrix {
             }
         }
     }
-    public static Matrix add(Matrix m1, Matrix m2)throws Exception{
+    public static Matrix add(Matrix m1, Matrix m2)throws MyExy{
         if((m1.m_arr.length!=m2.m_arr.length)||(m1.m_arr[0].length!=m2.m_arr[0].length))
-            throw new Exception();
+            throw new MyExy();
         Matrix temp = new Matrix(m1.m_arr.length,m1.m_arr[0].length);
         for (int i =0; i<m1.m_arr.length;i++){
             for (int j =0; j<m1.m_arr[0].length;j++){
@@ -36,6 +45,18 @@ public class Matrix {
 
         }
         return temp;
+    }
+    public static boolean equal(Matrix m1, Matrix m2){
+        if((m1.m_arr.length!=m2.m_arr.length)||(m1.m_arr[0].length!=m2.m_arr[0].length))
+            return false;
+        for (int i =0; i<m1.m_arr.length;i++){
+            for (int j =0; j<m1.m_arr[0].length;j++){
+                if(m1.m_arr[i][j] != m2.m_arr[i][j])
+                    return false;
+            }
+
+        }
+        return true;
     }
     public void write_to_file(File f)throws IOException{
 
@@ -87,7 +108,7 @@ public class Matrix {
     public void set (int i, int j,int val){
         m_arr[i][j] = val;
     }
-
+    public int get (int i, int j){ return m_arr[i][j];}
 
     public void output(){
         //m_arr = new int[n][m];
@@ -100,7 +121,6 @@ public class Matrix {
     }
 
 }
-
 //    public static int in_num(String name){
 //        //System.out.println();
 //        Scanner in = new Scanner(System.in);

@@ -1,8 +1,10 @@
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
+
 import input.*;
 import Matrix.*;
+
+
 public class Main {
     public static void main (String[] args) {
 //        Scanner in = new Scanner(System.in);
@@ -36,7 +38,7 @@ public class Main {
                 d = Matrix.add(c,b);
                 d.output();
             }
-            catch (Exception ex){
+            catch (MyExy ex){
                 System.out.println("Wrong size");
             }
         }
